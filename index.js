@@ -79,5 +79,7 @@ function displacement3D(dt, steps) {
     sX = sX + dt*vX;
     sY = sY + dt*vY;
     sZ = sZ + dt*vZ;
+    
+    console.log(sX + '\t' + sY + '\t' + sZ);
   }
 }
