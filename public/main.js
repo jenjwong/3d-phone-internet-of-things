@@ -32,10 +32,12 @@ function addCube() {
 
 var render = function () {
   requestAnimationFrame( render );
-  cube.rotation.x = alpha/100;
-  cube.rotation.y = beta/100;
-  cube.rotation.z = gamma/100;
-  // cube.position.x = sX;
+  // cube.rotation.x = alpha/100;
+  // cube.rotation.y = beta/100;
+  // cube.rotation.z = gamma/100;
+  cube.position.x = sX;
+  cube.position.y = sY;
+  cube.position.z = sZ;
   
   renderer.render( scene, camera );
 }
