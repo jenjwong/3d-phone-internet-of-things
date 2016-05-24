@@ -35,9 +35,9 @@ var render = function () {
   cube.rotation.x = alpha/100;
   cube.rotation.y = beta/100;
   cube.rotation.z = gamma/100;
-  // cube.position.x = sX/100;
-  // cube.position.y = sY/100;
-  // cube.position.z = sZ/100;
+  cube.position.x = sX/100;
+  cube.position.y = sY/100;
+  cube.position.z = sZ/100;
   
   renderer.render( scene, camera );
 }
