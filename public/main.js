@@ -12,6 +12,7 @@ var vX = 0, vY = 0, vZ = 0,
 
 // 3D Scene variables
 var scene, camera, renderer, cube;
+var ambientlight, hemispherelight;
 
 // Setup 3D scene
 function setupScene() {
@@ -24,9 +25,10 @@ function setupScene() {
   renderer.setSize( $renderPort.width(), $renderPort.height()); 
   
   // Ambient light
-  var ambientlight = new THREE.AmbientLight( 0x404040 );
+  ambientlight = new THREE.AmbientLight( 0x404040 );
   scene.add( ambientlight );
-  var hemispherelight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+  hemispherelight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+  hemispherelight.position.set(0, 500, 0);
   scene.add( hemispherelight );
   
   // Add renderer
