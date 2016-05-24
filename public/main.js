@@ -104,11 +104,11 @@ socket.on('phone-data', function (data) {
   sY = data.displacement.sY;
   sZ = data.displacement.sZ;
   
-  if (Math.abs(data.rotationRate.alpha) > 0.2 || Math.abs(data.rotationRate.beta) > 0.2 || Math.abs(data.rotationRate.gamma) > 0.2){
+  if (Math.abs(data.rotationRate.alpha) > 0.1 || Math.abs(data.rotationRate.beta) > 0.1 || Math.abs(data.rotationRate.gamma) > 0.1){
     // Update rotationRate
-    var scalar = 1000;
-    alpha = data.rotationRate.alpha*data.interval;
-    beta = data.rotationRate.beta*data.interval;
-    gamma = data.rotationRate.gamma*data.interval;
+    var scalar = 100;
+    alpha = data.rotationRate.alpha*data.interval/scalar;
+    beta = data.rotationRate.beta*data.interval/scalar;
+    gamma = data.rotationRate.gamma*data.interval/scalar;
   }
 });
