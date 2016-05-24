@@ -3,7 +3,7 @@ const express = require('express');
 var app = express();  
 const path = require('path'),
   server = require('http').createServer(app),
-  port = process.env.PORT || 8080;
+  port = process.env.PORT || 5223;
   io = require('socket.io')(server);
 
 // Server global acc, vel, dist variables
