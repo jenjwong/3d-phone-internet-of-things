@@ -29,10 +29,11 @@ io.on('connection', function ( socket ) {
     // Check array size - same lengths
     // if (aX.length >= 100) chopArrays(100);
     
-    // Store acc data
-    aX = data.accelerometer.x;
-    aY = data.accelerometer.y;
-    aZ = data.accelerometer.z;
+    // Store acc data with lowpass filtering
+    var smooth = 0.5;
+    aX = smooth*data.accelerometer.x + (1-smooth)*aX;
+    aY = smooth*data.accelerometer.y + (1-smooth)*aY;
+    aZ = smooth*data.accelerometer.z + (1-smooth)*aZ;
     
     // Update vel, disp
     var steps = Math.round(1/data.interval);  
@@ -41,9 +42,9 @@ io.on('connection', function ( socket ) {
     // Broadcast new data
     socket.broadcast.emit('phone-data', {
       accelerometer: {
-        x: data.accelerometer.x,
-        y: data.accelerometer.y,
-        z: data.accelerometer.z
+        x: aX,
+        y: aY,
+        z: aZ
       },
       velocity: {
         vX: vX,
@@ -79,7 +80,5 @@ function displacement3D(dt, steps) {
     sX = sX + dt*vX;
     sY = sY + dt*vY;
     sZ = sZ + dt*vZ;
-    
-    console.log(sX + '\t' + sY + '\t' + sZ);
   }
 }
