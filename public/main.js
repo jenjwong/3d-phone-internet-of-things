@@ -100,21 +100,27 @@ if (window.DeviceMotionEvent) {
 }
 
 socket.on('phone-data', function (data) {
-  // Update velocity
-  vX = data.velocity.vX;
-  vY = data.velocity.vY;
-  vZ = data.velocity.vZ;
+  if (aboveAbsThreshold(data.accelerometer.x, 1)) {
+    vX = data.velocity.vX;
+    sX = data.displacement.sX;
+  }
+  if (aboveAbsThreshold(data.accelerometer.y, 1)) {
+    vY = data.velocity.vY;
+    sY = data.displacement.sY;
+  }
+  if (aboveAbsThreshold(data.accelerometer.z, 1)) {
+    vZ = data.velocity.vZ;    
+    sZ = data.displacement.sZ;
+  }
   
-  // Update displacement
-  sX = data.displacement.sX;
-  sY = data.displacement.sY;
-  sZ = data.displacement.sZ;
-  
-  if (Math.abs(data.rotationRate.alpha) > 0.1 || Math.abs(data.rotationRate.beta) > 0.1 || Math.abs(data.rotationRate.gamma) > 0.1){
-    // Update rotationRate
+  // Check and update angle
+  if (aboveAbsThreshold(data.rotationRate.alpha, 0.1) || aboveAbsThreshold(data.rotationRate.beta, 0.1) || aboveAbsThreshold(data.rotationRate.gamma, 0.1)) {
     var scalar = 10;
     alpha = data.rotationRate.alpha*data.interval/scalar;
     beta = data.rotationRate.beta*data.interval/scalar;
     gamma = data.rotationRate.gamma*data.interval/scalar;
   }
 });
+function aboveAbsThreshold(input, threshold) {
+  return Math.abs(input) > threshold ? true : false;
+}
