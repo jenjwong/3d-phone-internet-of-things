@@ -24,8 +24,10 @@ function setupScene() {
   renderer.setSize( $renderPort.width(), 
   
   // Ambient light
-  var light = new THREE.AmbientLight( 0x404040 );
-  scene.add( light );
+  var ambientlight = new THREE.AmbientLight( 0x404040 );
+  scene.add( ambientlight );
+  var hemispherelight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+  scene.add( hemispherelight );
   
   // Set render viewport, add renderer
   $renderPort.height() );
