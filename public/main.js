@@ -20,11 +20,11 @@ function setupScene() {
   renderer = new THREE.WebGLRenderer();
   renderer.setSize( $renderPort.width(), $renderPort.height() );
   $renderPort.append( renderer.domElement );
-  camera.position.z = 100;
+  camera.position.z = 300;
 }
 
 function addCube() {
-  var geometry = new THREE.BoxGeometry( 50,50,50 );
+  var geometry = new THREE.BoxGeometry( 100,100,100 );
   var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 });
   cube = new THREE.Mesh( geometry, material );
   scene.add( cube );
@@ -62,19 +62,22 @@ if (window.DeviceMotionEvent) {
       rotationRate: data.rotationRate,
       interval: data.interval
     };
-    socket.emit('phone-data', phoneData);
+    if (Math.abs(acc.x) > 0.5 || Math.abs(acc.y) > 0.5 || Math.abs(acc.z) > 0.5) socket.emit('phone-data', phoneData);
   }, false);
 }
 
 socket.on('phone-data', function (data) {
+  // Update velocity
   vX = data.velocity.vX;
   vY = data.velocity.vY;
   vZ = data.velocity.vZ;
   
+  // Update displacement
   sX = data.displacement.sX;
   sY = data.displacement.sY;
   sZ = data.displacement.sZ;
   
+  // Update rotationRate
   alpha = data.rotationRate.alpha;
   beta = data.rotationRate.beta;
   gamma = data.rotationRate.gamma;
