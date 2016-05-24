@@ -106,8 +106,9 @@ socket.on('phone-data', function (data) {
   
   if (Math.abs(data.rotationRate.alpha) > 0.2 || Math.abs(data.rotationRate.beta) > 0.2 || Math.abs(data.rotationRate.gamma) > 0.2){
     // Update rotationRate
-    alpha = data.rotationRate.alpha;
-    beta = data.rotationRate.beta;
-    gamma = data.rotationRate.gamma;
+    var scalar = 1000;
+    alpha = data.rotationRate.alpha/scalar;
+    beta = data.rotationRate.beta/scalar;
+    gamma = data.rotationRate.gamma/scalar;
   }
 });
