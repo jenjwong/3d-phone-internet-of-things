@@ -17,6 +17,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Setup socket communication
 io.on('connection', function ( socket ) {
   
+  socket.on('joined', function() {
+    console.log("Joined");
+    socket.broadcast.emit('joined', {
+      message: "Joined"
+    });
+  });
+  
   // Data
   socket.on('phone-data', function ( data ) {
     // Check array size - same lengths

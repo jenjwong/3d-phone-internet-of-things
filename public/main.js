@@ -48,7 +48,7 @@ if (window.DeviceMotionEvent) {
   window.addEventListener('devicemotion', function (data) {
     var acc = data.acceleration;
     // vel and displacement yet
-    let phoneData = {
+    var phoneData = {
       accelerometer: acc,
       velocity: {},
       displacement: {},
