@@ -12,7 +12,7 @@ var vX = 0, vY = 0, vZ = 0,
 
 // 3D Scene variables
 var scene, camera, renderer, cube;
-var ambientlight, hemispherelight;
+var ambientlight, hemispherelight, dirlight, pointlight;
 
 // Setup 3D scene
 function setupScene() {
@@ -21,14 +21,21 @@ function setupScene() {
   camera = new THREE.PerspectiveCamera( 75, $renderPort.width()/$renderPort.height(), 0.1, 1000);
   
   // Create renderer
-  renderer = new THREE.WebGLRenderer();
-  renderer.setSize( $renderPort.width(), $renderPort.height()); 
+  renderer = new THREE.WebGLRenderer( { alpha: true } );
+  renderer.setSize( $renderPort.width(), $renderPort.height());
   
-  // Ambient light
+  // Light
   ambientlight = new THREE.AmbientLight( 0x404040 );
   scene.add( ambientlight );
+  
+  dirLight = new THREE.DirectionalLight(0xffffff, 1);
+  dirLight.position.set(100, 500, 50);
+  scene.add(dirLight);
+  
   hemispherelight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
   hemispherelight.position.set(0, 500, 0);
+  hemispherelight.color.setHSL( 0.6, 1, 0.6 );
+  hemispherelight.groundColor.setHSL( 0.095, 1, 0.75 );
   scene.add( hemispherelight );
   
   // Add renderer
@@ -36,23 +43,27 @@ function setupScene() {
   
   // Cam position
   camera.position.z = 300;
+  camera.position.y = 300;
   
   // Add cube
   addCube();
+  
+  camera.lookAt( cube.position );
 }
 
 function addCube() {
   var geometry = new THREE.BoxGeometry( 100,100,100 );
-  var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 });
+  var material = new THREE.MeshPhongMaterial( { color: 0x47d1d1 });
   cube = new THREE.Mesh( geometry, material );
+  cube.castShadow = true;
   scene.add( cube );
 }
 
 var render = function () {
   requestAnimationFrame( render );
-  cube.rotation.x = alpha/100;
-  cube.rotation.y = beta/100;
-  cube.rotation.z = gamma/100;
+  cube.rotation.x = alpha;
+  cube.rotation.y = beta;
+  cube.rotation.z = gamma;
   
   renderer.render( scene, camera );
 }
@@ -93,8 +104,10 @@ socket.on('phone-data', function (data) {
   sY = data.displacement.sY;
   sZ = data.displacement.sZ;
   
-  // Update rotationRate
-  alpha = data.rotationRate.alpha;
-  beta = data.rotationRate.beta;
-  gamma = data.rotationRate.gamma;
+  if (Math.abs(data.rotationRate.alpha) > 0.2 || Math.abs(data.rotationRate.beta) > 0.2 || Math.abs(data.rotationRate.gamma) > 0.2){
+    // Update rotationRate
+    alpha = data.rotationRate.alpha;
+    beta = data.rotationRate.beta;
+    gamma = data.rotationRate.gamma;
+  }
 });
