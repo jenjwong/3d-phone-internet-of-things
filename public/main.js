@@ -20,11 +20,11 @@ function setupScene() {
   renderer = new THREE.WebGLRenderer();
   renderer.setSize( $renderPort.width(), $renderPort.height() );
   $renderPort.append( renderer.domElement );
-  camera.position.z = 5;
+  camera.position.z = 10;
 }
 
 function addCube() {
-  var geometry = new THREE.BoxGeometry( 1,1,1 );
+  var geometry = new THREE.BoxGeometry( 10,10,10 );
   var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 });
   cube = new THREE.Mesh( geometry, material );
   scene.add( cube );
