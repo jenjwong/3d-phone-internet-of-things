@@ -38,8 +38,6 @@ io.on('connection', function ( socket ) {
     var steps = Math.round(1/data.interval);  
     displacement3D(0.0167, 60);
     
-    console.log(data.interval);
-    
     // Broadcast new data
     socket.broadcast.emit('phone-data', {
       accelerometer: {
@@ -73,7 +71,7 @@ server.listen(port, function() {
 
 // Utils
 function displacement3D(dt, steps) {
-  for (var i = 1; i < steps; i++) {
+  for (var i = 0; i < steps; i++) {
     vX = vX + dt*aX;
     vY = vY + dt*aY;
     vZ = vZ + dt*aZ;
