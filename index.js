@@ -55,6 +55,7 @@ io.on('connection', function ( socket ) {
         sY: sY,
         sZ: sZ
       },
+      rotationRate: data.rotationRate,
       interval: data.interval
     });
   });

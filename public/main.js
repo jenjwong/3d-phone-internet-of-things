@@ -5,6 +5,11 @@ var $renderPort = $('#renderPort');
 var socket = io();
 var connected = false;
 
+// Phone variables
+var vX = 0, vY = 0, vZ = 0,
+  sX = 0, sY = 0, sZ = 0,
+  alpha = 0, beta = 0, gamma = 0;
+
 // 3D Scene variables
 var scene, camera, renderer, cube;
 
@@ -27,8 +32,9 @@ function addCube() {
 
 var render = function () {
   requestAnimationFrame( render );
-  cube.rotation.x += 0.1;
-  cube.rotation.y += 0.1;
+  cube.rotation.x = alpha;
+  cube.rotation.y = beta;
+  cube.rotation.z = gamma;
   
   renderer.render( scene, camera );
 }
@@ -52,6 +58,7 @@ if (window.DeviceMotionEvent) {
       accelerometer: acc,
       velocity: {},
       displacement: {},
+      rotationRate: data.rotationRate,
       interval: data.interval
     };
     socket.emit('phone-data', phoneData);
@@ -59,5 +66,15 @@ if (window.DeviceMotionEvent) {
 }
 
 socket.on('phone-data', function (data) {
-  console.log(data.velocity.vX);
+  vX = data.velocity.vX;
+  vY = data.velocity.vY;
+  vZ = data.velocity.vZ;
+  
+  sX = data.displacement.sX;
+  sY = data.displacement.sY;
+  sZ = data.displacement.sZ;
+  
+  alpha = data.rotationRate.alpha;
+  beta = data.rotationRate.beta;
+  gamma = data.rotationRate.gamma;
 });
