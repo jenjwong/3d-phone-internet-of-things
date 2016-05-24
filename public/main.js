@@ -39,6 +39,8 @@ var render = function () {
   cube.position.y = sY;
   cube.position.z = sZ;
   
+  console.log(sX);
+  
   renderer.render( scene, camera );
 }
 
