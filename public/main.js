@@ -44,11 +44,13 @@ function setupScene() {
   // Cam position
   camera.position.z = 300;
   camera.position.y = 300;
+  camera.up = new THREE.Vector3( 0, 0, 1 );
   
   // Add cube
   addCube();
   
   camera.lookAt( cube.position );
+  scene.add( camera );
 }
 
 function addCube() {
