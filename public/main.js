@@ -35,9 +35,9 @@ var render = function () {
   cube.rotation.x = alpha/100;
   cube.rotation.y = beta/100;
   cube.rotation.z = gamma/100;
-  cube.position.x = sX/100;
-  cube.position.y = sY/100;
-  cube.position.z = sZ/100;
+  // cube.position.x = sX/100;
+  // cube.position.y = sY/100;
+  // cube.position.z = sZ/100;
   
   renderer.render( scene, camera );
 }
@@ -64,23 +64,27 @@ if (window.DeviceMotionEvent) {
       rotationRate: data.rotationRate,
       interval: data.interval
     };
-    if (Math.abs(acc.x) > 0.5 || Math.abs(acc.y) > 0.5 || Math.abs(acc.z) > 0.5) socket.emit('phone-data', phoneData);
+    socket.emit('phone-data', phoneData);
   }, false);
 }
 
 socket.on('phone-data', function (data) {
-  // Update velocity
-  vX = data.velocity.vX;
-  vY = data.velocity.vY;
-  vZ = data.velocity.vZ;
-  
-  // Update displacement
-  sX = data.displacement.sX;
-  sY = data.displacement.sY;
-  sZ = data.displacement.sZ;
-  
-  // Update rotationRate
-  alpha = data.rotationRate.alpha;
-  beta = data.rotationRate.beta;
-  gamma = data.rotationRate.gamma;
+  if (Math.abs(data.accelerometer.x) > 0.5 || Math.abs(data.accelerometer.y) > 0.5 || Math.abs(data.accelerometer.z) > 0.5) {
+    // Update velocity
+    vX = data.velocity.vX;
+    vY = data.velocity.vY;
+    vZ = data.velocity.vZ;
+    
+    // Update displacement
+    sX = data.displacement.sX;
+    sY = data.displacement.sY;
+    sZ = data.displacement.sZ;
+    
+    // Update rotationRate
+    alpha = data.rotationRate.alpha;
+    beta = data.rotationRate.beta;
+    gamma = data.rotationRate.gamma;
+  } else {
+    sX = sY = sZ = vX= vY = vZ = 0;
+  }
 });
