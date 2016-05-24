@@ -34,6 +34,8 @@ io.on('connection', function ( socket ) {
     aY = data.accelerometer.y;
     aZ = data.accelerometer.z;
     
+    console.log(sX);
+    
     // Update vel, disp
     var steps = Math.round(1/data.interval);
     displacement3D(data.interval, 60);
