@@ -81,6 +81,6 @@ function displacement3D(dt, steps) {
     sY = sY + dt*vY;
     sZ = sZ + dt*vZ;
     
-    console.log(sX+'\t'+sY+'\t'+sZ+'\t');
+    console.log(vX+'\t'+vY+'\t'+vZ+'\t');
   }
 }
