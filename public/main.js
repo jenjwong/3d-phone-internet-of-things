@@ -21,7 +21,7 @@ function setupScene() {
   
   // Create renderer
   renderer = new THREE.WebGLRenderer();
-  renderer.setSize( $renderPort.width(), 
+  renderer.setSize( $renderPort.width(), $renderPort.height()); 
   
   // Ambient light
   var ambientlight = new THREE.AmbientLight( 0x404040 );
@@ -29,8 +29,7 @@ function setupScene() {
   var hemispherelight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
   scene.add( hemispherelight );
   
-  // Set render viewport, add renderer
-  $renderPort.height() );
+  // Add renderer
   $renderPort.append( renderer.domElement );
   
   // Cam position
