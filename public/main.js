@@ -65,6 +65,10 @@ var render = function () {
   cube.rotation.y = beta;
   cube.rotation.z = gamma;
   
+  cube.position.x = sX;
+  cube.position.y = sY;
+  cube.position.z = sZ;
+  
   renderer.render( scene, camera );
 }
 
@@ -106,7 +110,7 @@ socket.on('phone-data', function (data) {
   
   if (Math.abs(data.rotationRate.alpha) > 0.1 || Math.abs(data.rotationRate.beta) > 0.1 || Math.abs(data.rotationRate.gamma) > 0.1){
     // Update rotationRate
-    var scalar = 100;
+    var scalar = 10;
     alpha = data.rotationRate.alpha*data.interval/scalar;
     beta = data.rotationRate.beta*data.interval/scalar;
     gamma = data.rotationRate.gamma*data.interval/scalar;
