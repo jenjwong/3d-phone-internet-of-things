@@ -36,7 +36,7 @@ io.on('connection', function ( socket ) {
     
     // Update vel, disp
     var steps = Math.round(1/data.interval);
-    displacement3D(data.interval, steps);
+    displacement3D(data.interval, 60);
     
     // Broadcast new data
     socket.broadcast.emit('phone-data', {
