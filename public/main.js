@@ -15,12 +15,27 @@ var scene, camera, renderer, cube;
 
 // Setup 3D scene
 function setupScene() {
+  // Scene object
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, $renderPort.width()/$renderPort.height(), 0.1, 1000);
+  
+  // Create renderer
   renderer = new THREE.WebGLRenderer();
-  renderer.setSize( $renderPort.width(), $renderPort.height() );
+  renderer.setSize( $renderPort.width(), 
+  
+  // Ambient light
+  var light = new THREE.AmbientLight( 0x404040 );
+  scene.add( light );
+  
+  // Set render viewport, add renderer
+  $renderPort.height() );
   $renderPort.append( renderer.domElement );
+  
+  // Cam position
   camera.position.z = 300;
+  
+  // Add cube
+  addCube();
 }
 
 function addCube() {
@@ -35,16 +50,12 @@ var render = function () {
   cube.rotation.x = alpha/100;
   cube.rotation.y = beta/100;
   cube.rotation.z = gamma/100;
-  cube.position.x = sX/100;
-  cube.position.y = sY/100;
-  cube.position.z = sZ/100;
   
   renderer.render( scene, camera );
 }
 
 // Kickstart
 setupScene();
-addCube();
 render();
 
 // Check connection
@@ -69,22 +80,18 @@ if (window.DeviceMotionEvent) {
 }
 
 socket.on('phone-data', function (data) {
-  if (Math.abs(data.accelerometer.x) > 0.5 || Math.abs(data.accelerometer.y) > 0.5 || Math.abs(data.accelerometer.z) > 0.5) {
-    // Update velocity
-    vX = data.velocity.vX;
-    vY = data.velocity.vY;
-    vZ = data.velocity.vZ;
-    
-    // Update displacement
-    sX = data.displacement.sX;
-    sY = data.displacement.sY;
-    sZ = data.displacement.sZ;
-    
-    // Update rotationRate
-    alpha = data.rotationRate.alpha;
-    beta = data.rotationRate.beta;
-    gamma = data.rotationRate.gamma;
-  } else {
-    sX = sY = sZ = vX= vY = vZ = 0;
-  }
+  // Update velocity
+  vX = data.velocity.vX;
+  vY = data.velocity.vY;
+  vZ = data.velocity.vZ;
+  
+  // Update displacement
+  sX = data.displacement.sX;
+  sY = data.displacement.sY;
+  sZ = data.displacement.sZ;
+  
+  // Update rotationRate
+  alpha = data.rotationRate.alpha;
+  beta = data.rotationRate.beta;
+  gamma = data.rotationRate.gamma;
 });
