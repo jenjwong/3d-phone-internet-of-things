@@ -100,18 +100,13 @@ if (window.DeviceMotionEvent) {
 }
 
 socket.on('phone-data', function (data) {
-  if (aboveAbsThreshold(data.accelerometer.x, 1)) {
     vX = data.velocity.vX;
-    sX = data.displacement.sX;
-  }
-  if (aboveAbsThreshold(data.accelerometer.y, 1)) {
     vY = data.velocity.vY;
+    vZ = data.velocity.vZ;
+    
+    sX = data.displacement.sX;
     sY = data.displacement.sY;
-  }
-  if (aboveAbsThreshold(data.accelerometer.z, 1)) {
-    vZ = data.velocity.vZ;    
     sZ = data.displacement.sZ;
-  }
   
   // Check and update angle
   if (aboveAbsThreshold(data.rotationRate.alpha, 0.1) || aboveAbsThreshold(data.rotationRate.beta, 0.1) || aboveAbsThreshold(data.rotationRate.gamma, 0.1)) {
