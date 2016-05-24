@@ -85,11 +85,13 @@ socket.on('connection', function() {
 if (window.DeviceMotionEvent) {
   window.addEventListener('devicemotion', function (data) {
     var acc = data.acceleration;
-    // vel and displacement yet
+    var vel = { vX: vX, vY: vY, vZ: vZ };
+    var disp = { sX: sX, sY: sY, sZ: sZ };
+    
     var phoneData = {
       accelerometer: acc,
-      velocity: {},
-      displacement: {},
+      velocity: vel,
+      displacement: disp,
       rotationRate: data.rotationRate,
       interval: data.interval
     };

@@ -72,19 +72,12 @@ server.listen(port, function() {
 // Utils
 function displacement3D(dt, steps) {
   for (var i = 0; i < steps; i++) {
-    // vX = vX + dt*aX;
-    // vY = vY + dt*aY;
-    // vZ = vZ + dt*aZ;
-    // 
-    // sX = sX + dt*vX;
-    // sY = sY + dt*vY;
-    // sZ = sZ + dt*vZ;
-    vX = dt*aX;
-    vY = dt*aY;
-    vZ = dt*aZ;
+    vX = vX + dt*aX;
+    vY = vY + dt*aY;
+    vZ = vZ + dt*aZ;
     
-    sX = dt*vX;
-    sY = dt*vY;
-    sZ = dt*vZ;
+    sX = sX + dt*vX;
+    sY = sY + dt*vY;
+    sZ = sZ + dt*vZ;
   }
 }
