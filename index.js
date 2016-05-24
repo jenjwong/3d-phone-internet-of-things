@@ -69,6 +69,10 @@ server.listen(port, function() {
   console.log('Server listening on port %d', port);
 });
 
+setInterval(function() {
+  vX = Vy = Vz = Sx = sY = sZ = 0;
+}, 1000);
+
 // Utils
 function displacement3D(dt, steps) {
   for (var i = 0; i < steps; i++) {
