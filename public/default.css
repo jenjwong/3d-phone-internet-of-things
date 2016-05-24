@@ -1,5 +1,16 @@
 html, body {
-  
+  font-family: "Avenir", "Helvetica Neue", helvetica, sans-serif;
+  color: #535353;
+}
+
+.intro {
+  width: 500px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 30px;
 }
 
 /* 3D Scene */

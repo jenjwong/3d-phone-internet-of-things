@@ -29,7 +29,7 @@ function setupScene() {
   scene.add( ambientlight );
   
   dirLight = new THREE.DirectionalLight(0xffffff, 1);
-  dirLight.position.set(100, 500, 50);
+  dirLight.position.set(400, 500, 50);
   scene.add(dirLight);
   
   hemispherelight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
@@ -42,8 +42,8 @@ function setupScene() {
   $renderPort.append( renderer.domElement );
   
   // Cam position
-  camera.position.z = 300;
-  camera.position.y = 300;
+  camera.position.z = 400;
+  camera.position.y = 400;
   // camera.up = new THREE.Vector3( 0, 0, 1 );
   
   // Add cube
@@ -54,7 +54,7 @@ function setupScene() {
 }
 
 function addCube() {
-  var geometry = new THREE.BoxGeometry( 100,100,100 );
+  var geometry = new THREE.BoxGeometry( 300,300,300 );
   var material = new THREE.MeshPhongMaterial( { color: 0x47d1d1 });
   cube = new THREE.Mesh( geometry, material );
   cube.castShadow = true;
@@ -62,17 +62,19 @@ function addCube() {
 }
 
 var render = function () {
-  requestAnimationFrame( render );
   cube.rotation.x = beta;
   cube.rotation.y = gamma;
   cube.rotation.z = alpha;
   
-  // cube.position.x = sX;
-  // cube.position.y = sY;
-  // cube.position.z = sZ;
-  
+  requestAnimationFrame( render );
   renderer.render( scene, camera );
 }
+
+window.addEventListener('resize', function() {
+  renderer.setSize( $renderPort.width(), $renderPort.height());
+  camera.aspect = $renderPort.width()/$renderPort.height();
+  camera.updateProjectionMatrix();
+});
 
 // Kickstart
 setupScene();
