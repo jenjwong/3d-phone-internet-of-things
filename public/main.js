@@ -18,7 +18,7 @@ var ambientlight, hemispherelight, dirlight, pointlight;
 function setupScene() {
   // Scene object
   scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera( 75, $renderPort.width()/$renderPort.height(), 0.1, 1000);
+  camera = new THREE.PerspectiveCamera( 75, $renderPort.width()/$renderPort.height(), 0.1, 10000);
   
   // Create renderer
   renderer = new THREE.WebGLRenderer( { alpha: true } );
