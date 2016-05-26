@@ -63,15 +63,16 @@ function addCube() {
 }
 
 var render = function () {
-  // cube.rotation.x += beta;
-  // cube.rotation.y += gamma;
-  // cube.rotation.z += alpha*2;
+  cube.rotation.x += beta;
+  cube.rotation.y += gamma;
+  cube.rotation.z += alpha*2;
   cube.position.x = sX;
   cube.position.y = sY;
   cube.position.z = sZ;
   
   requestAnimationFrame( render );
   renderer.render( scene, camera );
+  console.log(vX + '\t' + vY + '\t' + vZ);
 }
 
 window.addEventListener('resize', function() {
@@ -127,6 +128,7 @@ socket.on('phone-data', function (data) {
     beta = data.rotationRate.beta*data.interval/scalar;
     gamma = data.rotationRate.gamma*data.interval/scalar;
   }
+  
 });
 function aboveAbsThreshold(input, threshold) {
   return Math.abs(input) > threshold ? true : false;
