@@ -27,10 +27,7 @@ io.on('connection', function ( socket ) {
   });
   
   // Data
-  socket.on('phone-data', function ( data ) {
-    // Check array size - same lengths
-    // if (aX.length >= 100) chopArrays(100);
-    
+  socket.on('phone-data', function ( data ) {    
     // Store acc data with lowpass filtering
     var smooth = 0.5;
     aX = smooth*data.accelerometer.x + (1-smooth)*aX;
@@ -40,9 +37,6 @@ io.on('connection', function ( socket ) {
     // Update vel, disp
     var steps = Math.round(1/data.interval);  
     displacement3D(data.interval, 1);
-    
-    // Update angles
-    // rotationRateToAngles(data.rotationRate, data.interval, 1);
     
     // Broadcast new data
     socket.broadcast.emit('phone-data', {
@@ -85,12 +79,5 @@ function displacement3D(dt, steps) {
     sX = sX + dt*vX;
     sY = sY + dt*vY;
     sZ = sZ + dt*vZ;
-  }
-}
-function rotationRateToAngles(rotationRate, dt, steps) {
-  for (var i = 0; i < steps; i++) {
-    alpha = dt*rotationRate.alpha;
-    beta = dt*rotationRate.beta;
-    gamma = dt*rotationRate.gamma;
   }
 }

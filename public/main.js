@@ -66,9 +66,6 @@ var render = function () {
   cube.rotation.x += beta;
   cube.rotation.y += gamma;
   cube.rotation.z += alpha*2;
-  cube.position.x = sX;
-  cube.position.y = sY;
-  cube.position.z = sZ;
   
   requestAnimationFrame( render );
   renderer.render( scene, camera );
@@ -105,9 +102,8 @@ if (window.DeviceMotionEvent) {
       interval: data.interval
     };
     
-    if (Math.abs(acc.x) > 0.1 && Math.abs(acc.y) > 0.1 && Math.abs(acc.z) > 0.1) {
-      // Tell server 
-      socket.emit('phone-data', phoneData);
+    // Tell server 
+    socket.emit('phone-data', phoneData);
     }
   }, false);
 }
