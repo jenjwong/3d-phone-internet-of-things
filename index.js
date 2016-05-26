@@ -42,7 +42,7 @@ io.on('connection', function ( socket ) {
     displacement3D(data.interval, 1);
     
     // Update angles
-    rotationRateToAngles(data.rotationRate, data.interval, 1);
+    // rotationRateToAngles(data.rotationRate, data.interval, 1);
     
     // Broadcast new data
     socket.broadcast.emit('phone-data', {
