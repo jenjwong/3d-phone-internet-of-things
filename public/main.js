@@ -47,6 +47,8 @@ function setupScene() {
   camera.position.x = 400;
   // camera.up = new THREE.Vector3( 0, 0, 1 );
   
+  scene.add( new THREE.AxisHelper( 600 ));
+  
   // Add cube
   addCube();
   
@@ -63,8 +65,8 @@ function addCube() {
 }
 
 var render = function () {
-  cube.rotation.x += gamma;
-  cube.rotation.y += beta;
+  cube.rotation.x += beta;
+  cube.rotation.y += gamma;
   cube.rotation.z += alpha*2;
   
   requestAnimationFrame( render );
