@@ -66,7 +66,7 @@ function addCube() {
 
 var render = function () {
   // cube.rotation.x += gamma*2;
-  cube.rotation.y += gamma*2;
+  cube.rotation.y += beta*2;
   cube.rotation.z += alpha*2;
   
   requestAnimationFrame( render );
