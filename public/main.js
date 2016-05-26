@@ -92,7 +92,7 @@ socket.on('connection', function() {
 // If client has accelerometer and gyro data
 if (window.DeviceMotionEvent) {
   window.addEventListener('devicemotion', function (data) {
-    var acc = data.acceleration;
+    var acc = data.accelerationIncludingGravity;
     var vel = { vX: vX, vY: vY, vZ: vZ };
     var disp = { sX: sX, sY: sY, sZ: sZ };
     
