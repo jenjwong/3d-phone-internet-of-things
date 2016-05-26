@@ -61,11 +61,7 @@ io.on('connection', function ( socket ) {
         sY: sY,
         sZ: sZ
       },
-      rotationRate: {
-        alpha: alpha,
-        beta: beta,
-        gamma: gamma
-      },
+      rotationRate: data.rotationRate,
       interval: data.interval
     });
   });
