@@ -118,7 +118,7 @@ socket.on('phone-data', function (data) {
     sZ = data.displacement.sZ;
   
   // Check and update angle
-  if (aboveAbsThreshold(data.rotationRate.alpha, 0.1) || aboveAbsThreshold(data.rotationRate.beta, 0.1) || aboveAbsThreshold(data.rotationRate.gamma, 0.1)) {
+  if (aboveAbsThreshold(data.rotationRate.alpha, 0.05) || aboveAbsThreshold(data.rotationRate.beta, 0.05) || aboveAbsThreshold(data.rotationRate.gamma, 0.05)) {
     var scalar = 100;
     alpha = data.rotationRate.alpha*data.interval/scalar;
     beta = data.rotationRate.beta*data.interval/scalar;
