@@ -93,8 +93,8 @@ function displacement3D(dt, steps) {
 }
 function rotationRateToAngles(rotationRate, dt, steps) {
   for (var i = 0; i < steps; i++) {
-    alpha = alpha + dt*rotationRate.alpha;
-    beta = beta + dt*rotationRate.beta;
-    gamma = gamma + dt*rotationRate.gamma;
+    alpha = dt*rotationRate.alpha;
+    beta = dt*rotationRate.beta;
+    gamma = dt*rotationRate.gamma;
   }
 }
