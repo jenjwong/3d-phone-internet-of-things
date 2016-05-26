@@ -44,6 +44,7 @@ function setupScene() {
   // Cam position
   camera.position.z = 400;
   camera.position.y = 400;
+  camera.position.x = 400;
   // camera.up = new THREE.Vector3( 0, 0, 1 );
   
   // Add cube
@@ -100,8 +101,10 @@ if (window.DeviceMotionEvent) {
       interval: data.interval
     };
     
-    // Tell server 
-    socket.emit('phone-data', phoneData);
+    if (Math.abs(acc.x) > 0.1 && Math.abs(acc.y) > 0.1 && Math.abs(acc.z) > 0.1) {
+      // Tell server 
+      socket.emit('phone-data', phoneData);
+    }
   }, false);
 }
 
