@@ -69,7 +69,6 @@ var render = function () {
   
   requestAnimationFrame( render );
   renderer.render( scene, camera );
-  console.log(vX + '\t' + vY + '\t' + vZ);
 }
 
 window.addEventListener('resize', function() {
