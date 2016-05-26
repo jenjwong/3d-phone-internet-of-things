@@ -47,8 +47,6 @@ function setupScene() {
   camera.position.x = 0;
   camera.up = new THREE.Vector3( 0, 1, 0 );
   
-  scene.add( new THREE.AxisHelper( 600 ));
-  
   // Add cube
   addCube();
   
