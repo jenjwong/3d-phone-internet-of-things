@@ -104,7 +104,6 @@ if (window.DeviceMotionEvent) {
     
     // Tell server 
     socket.emit('phone-data', phoneData);
-    }
   }, false);
 }
 
