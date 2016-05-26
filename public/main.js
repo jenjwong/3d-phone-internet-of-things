@@ -42,8 +42,8 @@ function setupScene() {
   $renderPort.append( renderer.domElement );
   
   // Cam position
-  camera.position.z = 400;
-  camera.position.y = 0;
+  camera.position.z = 900;
+  camera.position.y = 900;
   camera.position.x = 0;
   // camera.up = new THREE.Vector3( 0, 0, 1 );
   
