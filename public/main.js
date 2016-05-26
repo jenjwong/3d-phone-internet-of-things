@@ -62,9 +62,9 @@ function addCube() {
 }
 
 var render = function () {
-  cube.rotation.x = beta;
-  cube.rotation.y = gamma;
-  cube.rotation.z = alpha;
+  cube.rotation.x += beta;
+  cube.rotation.y += gamma;
+  cube.rotation.z += alpha;
   
   requestAnimationFrame( render );
   renderer.render( scene, camera );
@@ -99,6 +99,8 @@ if (window.DeviceMotionEvent) {
       rotationRate: data.rotationRate,
       interval: data.interval
     };
+    
+    // Tell server 
     socket.emit('phone-data', phoneData);
   }, false);
 }
