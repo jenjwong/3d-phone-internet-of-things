@@ -11,6 +11,8 @@ var aX = 0, aY = 0, aZ = 0,
   vX = 0, vY = 0, vZ = 0,
   sX = 0, sY = 0, sZ = 0;
 
+var alpha = 0, beta = 0, gamma = 0;
+
 // Fix OS paths
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -39,6 +41,9 @@ io.on('connection', function ( socket ) {
     var steps = Math.round(1/data.interval);  
     displacement3D(data.interval, 1);
     
+    // Update angles
+    rotationRateToAngles(data.rotationRate, data.interval, 1);
+    
     // Broadcast new data
     socket.broadcast.emit('phone-data', {
       accelerometer: {
@@ -56,7 +61,11 @@ io.on('connection', function ( socket ) {
         sY: sY,
         sZ: sZ
       },
-      rotationRate: data.rotationRate,
+      rotationRate: {
+        alpha: alpha,
+        beta: beta,
+        gamma: gamma
+      },
       interval: data.interval
     });
   });
@@ -80,5 +89,12 @@ function displacement3D(dt, steps) {
     sX = sX + dt*vX;
     sY = sY + dt*vY;
     sZ = sZ + dt*vZ;
+  }
+}
+function rotationRateToAngles(rotationRate, dt, steps) {
+  for (var i = 0; i < steps; i++) {
+    alpha = alpha + dt*rotationRate.alpha;
+    beta = beta + dt*rotationRate.beta;
+    gamma = gamma + dt*rotationRate.gamma;
   }
 }
