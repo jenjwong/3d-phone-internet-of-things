@@ -43,8 +43,8 @@ function setupScene() {
   
   // Cam position
   camera.position.z = 400;
-  camera.position.y = 400;
-  camera.position.x = 400;
+  camera.position.y = 0;
+  camera.position.x = 0;
   // camera.up = new THREE.Vector3( 0, 0, 1 );
   
   scene.add( new THREE.AxisHelper( 600 ));
