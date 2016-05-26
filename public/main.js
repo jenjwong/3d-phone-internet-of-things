@@ -43,7 +43,7 @@ function setupScene() {
   
   // Cam position
   camera.position.z = 900;
-  camera.position.y = 0;
+  camera.position.y = 900;
   camera.position.x = 0;
   camera.up = new THREE.Vector3( 0, 1, 0 );
   
@@ -65,7 +65,7 @@ function addCube() {
 }
 
 var render = function () {
-  // cube.rotation.x += gamma*2;
+  cube.rotation.x += alpha*2;
   cube.rotation.y += gamma*2;
   cube.rotation.z -= beta*2;
   
