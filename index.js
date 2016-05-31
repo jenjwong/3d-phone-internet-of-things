@@ -16,8 +16,48 @@ var alpha = 0, beta = 0, gamma = 0;
 // Fix OS paths
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+
+session = require("express-session")({
+    secret: "my-secret",
+    resave: true,
+    saveUninitialized: true
+  }),
+  sharedsession = require("express-socket.io-session");
+
+
+// Attach session
+app.use(session);
+
+// Share session with io sockets
+
+io.use(sharedsession(session));
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Setup socket communication
 io.on('connection', function ( socket ) {
+
+   // Accept a login event with user's data
+  socket.on("login", function(userdata) {
+      socket.handshake.session.userdata = userdata;
+  });
+  socket.on("logout", function(userdata) {
+      if (socket.handshake.session.userdata) {
+          delete socket.handshake.session.userdata;
+      }
+  });        
   
   socket.on('joined', function() {
     console.log("Joined");
