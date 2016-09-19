@@ -1,2 +1,3 @@
-# 3d-phone-test
-Create abstract patterns in 3D with your iPhone
+# 3d-phone-internet-of-things
+
+This app illustrates the potential to control your computer's UI using your smartphone's motion sensors and gyroscope.
