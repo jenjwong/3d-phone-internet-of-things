@@ -1,6 +1,6 @@
 # 3d-phone-internet-of-things
 
-This app illustrates the potential to control a computer's UI using a smartphone's motion sensors and gyroscope.
+This app illustrates the potential to control computer UI using smartphone's motion sensors and gyroscope.
 
 ## Technologies
 * Express/Node
