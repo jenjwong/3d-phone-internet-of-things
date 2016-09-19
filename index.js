@@ -16,9 +16,6 @@ var alpha = 0, beta = 0, gamma = 0;
 // Fix OS paths
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-
 session = require("express-session")({
     secret: "my-secret",
     resave: true,
@@ -26,25 +23,11 @@ session = require("express-session")({
   }),
   sharedsession = require("express-socket.io-session");
 
-
 // Attach session
 app.use(session);
 
 // Share session with io sockets
-
 io.use(sharedsession(session));
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Setup socket communication
 io.on('connection', function ( socket ) {
