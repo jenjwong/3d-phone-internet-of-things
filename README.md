@@ -9,7 +9,7 @@ This app illustrates the potential to control a computer's UI using a smartphone
 
 ## Usage
 
-See the code in action. Enter this link into the web browsers of your computer and phone [http://192.241.216.4:5223/](http://192.241.216.4:5223/). 
+See the code in action. Enter this link into the web browsers of your computer and phone [http://192.241.216.4:5223/](http://192.241.216.4:5223/) and control your computer's UI.
 
 ## Contributing
 
